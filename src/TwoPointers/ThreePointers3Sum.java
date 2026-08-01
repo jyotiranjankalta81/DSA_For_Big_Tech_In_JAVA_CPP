@@ -345,6 +345,58 @@ public class ThreePointers3Sum {
         return result;
     }
 
+    public static List<List<Integer>> threeSumArr(int[] nums){
+        List<List<Integer>>result1 = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i=0; i<nums.length-2;i++){
+
+            //declare the variable
+            int left=i+1,right=nums.length-1;
+            while(left<right){
+                int sum =
+                        nums[i]
+                                + nums[left]
+                                + nums[right];
+
+                if(sum==0){
+                    result1.add(Arrays.asList(
+                            nums[i],
+                            nums[left],
+                            nums[right]
+                    ));
+
+                    left++;
+                    right--;
+                    // Skip duplicate left
+                    while (left < right &&
+                            nums[left]
+                                    == nums[left - 1]) {
+                        left++;
+                    }
+
+                    // Skip duplicate right
+                    while (left < right &&
+                            nums[right]
+                                    == nums[right + 1]) {
+                        right--;
+                    }
+
+                }else if (sum < 0) {
+
+                    left++;
+                }
+
+                else {
+
+                    right--;
+                }
+            }
+
+        }
+        return result1;
+
+    }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);

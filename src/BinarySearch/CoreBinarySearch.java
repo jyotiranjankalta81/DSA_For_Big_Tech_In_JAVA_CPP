@@ -23,6 +23,39 @@ public class CoreBinarySearch {
         }
         return 0;
     }
+
+
+    public static int binarySearchV1(
+            int[] arr,
+            int target) {
+
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right) {
+
+            // Safe mid calculation
+            int mid =
+                    left +
+                            (right - left) / 2;
+
+            if (arr[mid] == target) {
+                return mid;
+            }
+
+            else if (target > arr[mid]) {
+
+                left = mid + 1;
+            }
+
+            else {
+
+                right = mid - 1;
+            }
+        }
+
+        return -1;
+    }
     public  static void main (String [] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the size of the array :");
@@ -34,9 +67,19 @@ public class CoreBinarySearch {
             arr[i]= sc.nextInt();
         }
 
-        System.out.println("enter the element:");
-        int k = sc.nextInt();
-        System.out.println("is element find : "+ binarySearch(arr,k));
+//        System.out.println("enter the element:");
+//        int k = sc.nextInt();
+//        System.out.println("is element find : "+ binarySearch(arr,k));
+
+//        SearchRotatedArray searchrottated= new SearchRotatedArray();
+
+
+        int peakIndex = PeakFinding.findPeak(arr);
+
+        System.out.println("Peak Index : " + peakIndex);
+        System.out.println("Peak Element : " + arr[peakIndex]);
+
+
 
 
 

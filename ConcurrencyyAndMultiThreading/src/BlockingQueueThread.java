@@ -5,7 +5,7 @@ import java.util.concurrent.BlockingQueue;
 
 
 public class BlockingQueueThread {
-
+/*
     static BlockingQueue<Integer> queue =
             new ArrayBlockingQueue<>(5);
 static class Producer implements Runnable {
@@ -53,6 +53,43 @@ static class Consumer implements Runnable {
     }
 }
 
+
+ */
+
+
+
+    static BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(5);
+
+    static class Producer implements Runnable{
+
+        public void run(){
+            for (int i=0;i<7;i++){
+                try {
+                queue.put(i);
+                System.out.println("Producer : " + i);
+                Thread.sleep(500);
+
+                }catch (Exception e){
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+    }
+    static class  Consumer implements  Runnable{
+        public void run(){
+
+            for (int i=0;i<7;i++){
+                try {
+                    int value = queue.take();
+                    System.out.println("Consumer : " + value);
+                    Thread.sleep(500);
+
+                }catch (Exception e){
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+    }
     public static void main(String[] args) {
 
         Thread producer = new Thread(new Producer());

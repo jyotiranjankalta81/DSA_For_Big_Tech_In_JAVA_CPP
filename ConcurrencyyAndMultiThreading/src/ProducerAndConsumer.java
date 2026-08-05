@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
-
+/*
 class Buffer {
 
     private Queue<Integer> queue = new LinkedList<>();
@@ -78,6 +78,76 @@ class Consumer implements Runnable {
         }
     }
 }
+
+
+*/
+
+
+class Buffer {
+    private Queue<Integer> queue = new LinkedList<>();
+    private int capacity = 5;
+
+    public synchronized void produce(int value) throws InterruptedException {
+
+        while (queue.size() == capacity) {
+            wait();
+        }
+        queue.add(value);
+        System.out.println("Produced Value: " + value);
+        notifyAll();
+    }
+
+    public synchronized int consume() throws InterruptedException {
+        while (queue.isEmpty()) {
+            wait();
+        }
+        int value = queue.remove();
+        System.out.println("Consume : " + value);
+        notifyAll();
+        return value;
+    }
+}
+
+  class Producer implements  Runnable{
+      private Buffer buffer;
+
+      Producer(Buffer buffer){
+          this.buffer= buffer;
+      }
+
+      @Override
+     public   void run(){
+          for (int i=0;i<10;i++){
+              try{
+                  buffer.produce(i);
+                  Thread.sleep(500);
+
+              } catch (InterruptedException e) {
+                  Thread.currentThread().interrupt();
+              }
+          }
+      }
+  }
+  class Consumer implements Runnable{
+      private Buffer buffer;
+
+      Consumer(Buffer buffer){
+          this.buffer = buffer;
+      }
+
+      @Override
+      public  void  run(){
+          for (int i=0; i<10;i++){
+
+              try {
+                  buffer.consume();
+                  Thread.sleep(500);
+              }catch (InterruptedException e){
+                  Thread.currentThread().interrupt();
+              }
+          }
+      }
+  }
 
 public class ProducerAndConsumer {
 

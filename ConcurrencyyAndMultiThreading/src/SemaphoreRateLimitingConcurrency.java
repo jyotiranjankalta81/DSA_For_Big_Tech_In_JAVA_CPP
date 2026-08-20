@@ -33,9 +33,9 @@ public class SemaphoreRateLimitingConcurrency {
 
         Runnable task = ()->{
             try {
-                System.out.println(" Thread Name " + Thread.currentThread().getName());
+                System.out.println(" Thread Name a1 " + Thread.currentThread().getName());
                 Thread.sleep(5000);
-                System.out.println("Thread Name " + Thread.currentThread().getName());
+                System.out.println("Thread Name a2" + Thread.currentThread().getName());
             }catch (InterruptedException e){
                 Thread.currentThread().interrupt();
             }

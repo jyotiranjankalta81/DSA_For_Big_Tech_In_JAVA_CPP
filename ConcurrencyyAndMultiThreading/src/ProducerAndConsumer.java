@@ -168,9 +168,7 @@ class Buffer{
        while (queue.isEmpty()){
            wait();
        }
-
        int value = queue.remove();
-
        System.out.println("consume : " + value);
        notifyAll();
    }

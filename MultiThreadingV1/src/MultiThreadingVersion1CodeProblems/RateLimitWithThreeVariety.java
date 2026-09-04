@@ -117,19 +117,92 @@ import java.util.concurrent.ConcurrentHashMap;
         }
     }
 }
+
+
+ class TokenBucketRateLimiter {
+
+    private final int capacity;
+    private final int refillRatePerSecond;
+
+    private final Map<String, Bucket> userBuckets =
+            new ConcurrentHashMap<>();
+
+    public TokenBucketRateLimiter(int capacity,
+                                  int refillRatePerSecond) {
+        this.capacity = capacity;
+        this.refillRatePerSecond = refillRatePerSecond;
+    }
+
+    public boolean allowRequest(String userId) {
+
+        Bucket bucket = userBuckets.computeIfAbsent(
+                userId,
+                id -> new Bucket(capacity)
+        );
+
+        synchronized (bucket) {
+
+            refill(bucket);
+
+            if (bucket.tokens <= 0) {
+                return false;
+            }
+
+            bucket.tokens--;
+
+            return true;
+        }
+    }
+
+    private void refill(Bucket bucket) {
+
+        long now = System.currentTimeMillis();
+
+        long elapsedMillis =
+                now - bucket.lastRefillTime;
+
+        long tokensToAdd =
+                (elapsedMillis * refillRatePerSecond) / 1000;
+
+        if (tokensToAdd > 0) {
+
+            bucket.tokens = (int) Math.min(
+                    capacity,
+                    bucket.tokens + tokensToAdd
+            );
+
+            // Preserve fractional elapsed time.
+            long millisPerToken = 1000L / refillRatePerSecond;
+
+            bucket.lastRefillTime +=
+                    tokensToAdd * millisPerToken;
+        }
+    }
+
+    private static class Bucket {
+
+        int tokens;
+        long lastRefillTime;
+
+        Bucket(int capacity) {
+            this.tokens = capacity;
+            this.lastRefillTime =
+                    System.currentTimeMillis();
+        }
+    }
+
+}
 public class RateLimitWithThreeVariety {
-
-
-
-
 
         public static void main(String[] args) {
 
-            SlidingWindowRateLimiter limiter =
+            SlidingWindowRateLimiter limiter1 =
                     new SlidingWindowRateLimiter(
                             5,
                             10_000
                     );
+            FixedWindowRateLimiter limiter2 = new FixedWindowRateLimiter(5,10000);
+            TokenBucketRateLimiter limiter = new TokenBucketRateLimiter(5,10000);
 
             ExecutorService executor =
                     Executors.newFixedThreadPool(7);

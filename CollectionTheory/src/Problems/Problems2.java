@@ -20,7 +20,7 @@ public class Problems2 {
             String product,
             double amount
     ) {}
-    record Employee (
+   private record Employee (
         int id,
          String name,
          int salary,
@@ -33,6 +33,8 @@ public class Problems2 {
         return employeesDepartmentWise;
 
     }
+
+
     public static void main (String[] args) {
         List<String> PS1 = Arrays.asList("1", "2", "3", "4");
         System.out.println("String List to Single String " + ListStringToString(PS1));

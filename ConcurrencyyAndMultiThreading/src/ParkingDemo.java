@@ -3,6 +3,7 @@
 
 
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.*;
 
 class ParkingSlot {
     private final String slotId;
@@ -43,6 +44,38 @@ class ParkingSlot {
             return true;
         } finally {
             lock.unlock();
+        }
+    }
+}
+
+
+public class ParkingDemo {
+    public static void main(String[] args) throws InterruptedException {
+        // Both tasks must share the SAME slot object.
+        ParkingSlot slot = new ParkingSlot("A1");
+
+        ExecutorService pool = Executors.newFixedThreadPool(2);
+        CountDownLatch start = new CountDownLatch(1);
+
+        try {
+            pool.execute(() -> attemptBooking(slot, "User-1", start));
+            pool.execute(() -> attemptBooking(slot, "User-2", start));
+
+            start.countDown(); // Allow both tasks to attempt booking
+        } finally {
+            pool.shutdown();
+        }
+
+        pool.awaitTermination(5, TimeUnit.SECONDS);
+    }
+
+    private static void attemptBooking(
+            ParkingSlot slot, String userId, CountDownLatch start) {
+        try {
+            start.await();
+            slot.book(userId);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }

@@ -30,6 +30,7 @@ public class Problem4 {
                                             return departmentEmployees.stream()
                                                     .filter(employee ->
                                                             employee.salary() < highestSalary)
+                                                    .sorted(Comparator.comparing(Employee::name))
                                                     .max(Comparator.comparing(Employee::salary));
                                         }
                                 )
@@ -44,10 +45,10 @@ public class Problem4 {
     public static void main(String[] args ){
 
         List<Employee> employees = List.of(
-                new Employee(1,"robin",1000,"HR"),
+                new Employee(1,"robin",3000,"HR"),
                 new Employee(1,"rest",2000,"IT"),
                 new Employee(1,"ali",3000,"HR"),
-                new Employee(1,"paler",4000,"HR"),
+                new Employee(1,"paler",3000,"HR"),
                 new Employee(1,"ruskin",5000,"IT"),
                 new Employee(1,"shame",6000,"HR"),
                 new Employee(1,"prem",7000,"CLOUD")

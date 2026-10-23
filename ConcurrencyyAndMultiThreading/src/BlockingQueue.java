@@ -1,14 +1,12 @@
-package MultiThreadingVersion1CodeProblems;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 
-class Producer1 implements Runnable {
+class Producer11 implements Runnable {
 
     private final BlockingQueue<Integer> queue;
 
-    public Producer1(BlockingQueue<Integer> queue) {
+    public Producer11(BlockingQueue<Integer> queue) {
         this.queue = queue;
     }
 
@@ -38,11 +36,11 @@ class Producer1 implements Runnable {
     }
 }
 
-class Consumer1 implements Runnable {
+class Consumer11 implements Runnable {
 
     private final BlockingQueue<Integer> queue;
 
-    public Consumer1(BlockingQueue<Integer> queue) {
+    public Consumer11(BlockingQueue<Integer> queue) {
         this.queue = queue;
     }
 
@@ -73,7 +71,7 @@ class Consumer1 implements Runnable {
 }
 
 
-class BlockingQueueThread{
+class BlockingQueueThreads{
     public static void main(String[] args){
 
 
@@ -84,7 +82,7 @@ class BlockingQueueThread{
         for (int i = 1; i <= 3; i++) {
 
             new Thread(
-                    new Producer1(queue),
+                    new Producer11(queue),
                     "Producer-" + i
             ).start();
         }
@@ -93,7 +91,7 @@ class BlockingQueueThread{
         for (int i = 1; i <= 3; i++) {
 
             new Thread(
-                    new Consumer1(queue),
+                    new Consumer11(queue),
                     "Consumer-" + i
             ).start();
         }

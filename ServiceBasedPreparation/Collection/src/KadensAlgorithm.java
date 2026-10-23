@@ -26,7 +26,10 @@ public class KadensAlgorithm {
             arr[i]= sc.nextInt();
         }
 
-        int target =5;
+        // int target =5;
+
+        int sumVal = maximumSum(arr);
+        System.out.println("sumVal "+ sumVal);
 
 //        targetSum sums = new targetSum();
 //

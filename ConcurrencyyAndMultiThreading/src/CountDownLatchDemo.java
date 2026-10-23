@@ -1,5 +1,3 @@
-package MultiThreadingVersion1CodeProblems;
-
 import java.util.concurrent.CountDownLatch;
 
 class CouuntDownLatchV1{

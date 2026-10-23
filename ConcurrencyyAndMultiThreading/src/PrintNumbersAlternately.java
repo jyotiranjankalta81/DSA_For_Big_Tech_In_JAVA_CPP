@@ -37,7 +37,7 @@ class NumberPrinter{
 public class PrintNumbersAlternately {
 
 
-    public static void main (String[] args){
+    public static void main (String[] args) throws InterruptedException{
 
         NumberPrinter printer = new NumberPrinter(10);
         Thread oddThread = new Thread(()->{
@@ -61,6 +61,8 @@ public class PrintNumbersAlternately {
 
         oddThread.start();
         eventhred.start();
+        oddThread.join();
+        eventhred.join();
 
     }
 }

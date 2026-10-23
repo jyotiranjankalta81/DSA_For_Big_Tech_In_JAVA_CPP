@@ -7,7 +7,6 @@ public class stringCompression {
         if (str == null || str.isEmpty()) {
             return str;
         }
-        System.out.println("stringLength " + str.length());
 
         StringBuilder result = new StringBuilder();
 
@@ -15,7 +14,6 @@ public class stringCompression {
 
 
         for (int i = 1; i < str.length(); i++) {
-        System.out.println("index is " + i+ " string at the position " + str.charAt(i));
 
             if (str.charAt(i) == str.charAt(i - 1)) {
 
@@ -30,7 +28,6 @@ public class stringCompression {
             }
         }
 
-        System.out.println("finalStringBefore print " + result.toString());
 
         // Last group is not handled inside the loop
         result.append(str.charAt(str.length() - 1));

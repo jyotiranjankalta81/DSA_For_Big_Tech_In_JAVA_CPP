@@ -1,4 +1,3 @@
-package MultiThreadingVersion1CodeProblems;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Map;
@@ -6,10 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
- class FixedWindowRateLimiter {
+class FixedWindowRateLimiter {
 
     private final long windowSizeMillis;
 
@@ -70,7 +66,7 @@ import java.util.concurrent.ConcurrentHashMap;
     }
 }
 
- class SlidingWindowRateLimiter {
+class SlidingWindowRateLimiter {
 
     private final int maxRequests;
 
@@ -118,8 +114,7 @@ import java.util.concurrent.ConcurrentHashMap;
     }
 }
 
-
- class TokenBucketRateLimiter {
+class TokenBucketRateLimiter {
 
     private final int capacity;
     private final int refillRatePerSecond;
@@ -192,6 +187,9 @@ import java.util.concurrent.ConcurrentHashMap;
     }
 
 }
+
+
+
 public class RateLimitWithThreeVariety {
 
         public static void main(String[] args) {

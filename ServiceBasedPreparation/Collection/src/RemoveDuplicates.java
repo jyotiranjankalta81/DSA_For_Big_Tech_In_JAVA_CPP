@@ -30,9 +30,10 @@ public class RemoveDuplicates {
 
     public static void main(String[] args) {
 
-        Integer[] nums = {1,3,3,7,7,4,4,8,3,5,3,4,6,1,8,3,9};
+        int[] nums = {1,3,3,7,7,4,4,8,3,5,3,4,6,1,8,3,9};
 
-        Integer[] result = removeDuplicateInUnsortedArray(nums);
+
+        int[] result = removeDuplicates(nums);
 
         System.out.println(Arrays.toString(result));
     }

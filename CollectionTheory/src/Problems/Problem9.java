@@ -1,7 +1,10 @@
 package Problems;
 import  java.util.*;
 import java.util.stream.Collectors;
-
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
+import java.util.Map;
+import java.util.stream.Collectors;
 public class Problem9 {
 
     /*
@@ -46,11 +49,25 @@ Do this entirely using Streams.
                 new Employee(17, "Deepak", "Support", 51000)
         );
 
-        Map<String,Optional<Employee>> maxofEachDepartment =
-                employees.stream().collect(Collectors.groupingBy(Employee::department,Collectors.maxBy(Comparator.comparing(Employee::salary))));
-        Map<String,Optional<Employee>> minofEachDepartment =
-                employees.stream().collect(Collectors.groupingBy(Employee::department,Collectors.minBy(Comparator.comparing(Employee::salary))));
 
-//        Map<String,Integer> calculateHighDiff= maxofEachDepartment.
+
+// Assumes Employee has getDepartment() and getSalary().
+        Map<String, DoubleSummaryStatistics> departmentStats =
+                employees.stream()
+                        .collect(Collectors.groupingBy(
+                                Employee::department,
+                                Collectors.summarizingDouble(Employee::salary)
+                        ));
+
+        departmentStats.entrySet().stream()
+                .max(Comparator.comparingDouble(entry ->
+                        entry.getValue().getMax() - entry.getValue().getMin()
+                ))
+                .ifPresent(entry -> System.out.println(
+                        "Department: " + entry.getKey()
+                                + ", Salary difference: "
+                                + (entry.getValue().getMax() - entry.getValue().getMin())
+                ));
+
     }
 }

@@ -1,5 +1,3 @@
-package MultiThreadingVersion1CodeProblems;
-
 public class CustomCyclicBarrier {
 
     private final int parties;

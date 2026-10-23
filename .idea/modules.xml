@@ -6,8 +6,10 @@
       <module fileurl="file://$PROJECT_DIR$/CollectionTheory/CollectionTheory.iml" filepath="$PROJECT_DIR$/CollectionTheory/CollectionTheory.iml" />
       <module fileurl="file://$PROJECT_DIR$/ConcurrencyyAndMultiThreading/ConcurrencyyAndMultiThreading.iml" filepath="$PROJECT_DIR$/ConcurrencyyAndMultiThreading/ConcurrencyyAndMultiThreading.iml" />
       <module fileurl="file://$PROJECT_DIR$/DSA_java.iml" filepath="$PROJECT_DIR$/DSA_java.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MultiThreadingV1/MultiThreadingV1.iml" filepath="$PROJECT_DIR$/MultiThreadingV1/MultiThreadingV1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OopsAndCoreJava/OopsAndCoreJava.iml" filepath="$PROJECT_DIR$/OopsAndCoreJava/OopsAndCoreJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ServiceBasedPreparation/Practice/Practice.iml" filepath="$PROJECT_DIR$/ServiceBasedPreparation/Practice/Practice.iml" />
       <module fileurl="file://$PROJECT_DIR$/ServiceBasedPreparation/ServiceBasedPreparation.iml" filepath="$PROJECT_DIR$/ServiceBasedPreparation/ServiceBasedPreparation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ServiceBasedPreparation/Practice/Threading/Threading.iml" filepath="$PROJECT_DIR$/ServiceBasedPreparation/Practice/Threading/Threading.iml" />
     </modules>
   </component>
 </project>

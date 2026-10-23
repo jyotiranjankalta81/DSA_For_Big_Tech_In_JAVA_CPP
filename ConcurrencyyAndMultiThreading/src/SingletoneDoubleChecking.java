@@ -1,5 +1,3 @@
-package ProblemsAll30;
-
 public class SingletoneDoubleChecking {
 
 

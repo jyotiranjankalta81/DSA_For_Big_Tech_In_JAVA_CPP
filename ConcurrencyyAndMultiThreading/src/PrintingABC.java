@@ -1,5 +1,3 @@
-package MultiThreadingVersion1CodeProblems;
-
 public class PrintingABC {
 
     private final int limit;
@@ -10,7 +8,7 @@ public class PrintingABC {
     }
 
     public synchronized void printA(){
-        while (turn<=limit*3){
+        while (turn<limit*3){
             while (turn%3==1 || turn%3==2){
                 try {
                     wait();
@@ -27,7 +25,7 @@ public class PrintingABC {
         }
     }
     public synchronized void printB(){
-        while (turn<=limit*3){
+        while (turn<limit*3){
             while (turn%3==0 || turn%3==2){
                 try {
                     wait();
@@ -44,7 +42,7 @@ public class PrintingABC {
         }
     }
     public synchronized void printC(){
-        while (turn<=limit*3){
+        while (turn<limit*3){
             while (turn%3==1 || turn%3==0){
                 try {
                     wait();
@@ -62,7 +60,7 @@ public class PrintingABC {
     }
 
     public static void main(String[] args) throws InterruptedException{
-        PrintingABC print = new PrintingABC(1);
+        PrintingABC print = new PrintingABC(5);
 
         Thread th1 = new Thread(print::printA,"Th-1");
         Thread th2 = new Thread(print::printB,"Th-2");

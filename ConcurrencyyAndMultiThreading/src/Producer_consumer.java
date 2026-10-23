@@ -1,9 +1,5 @@
-package MultiThreadingVersion1CodeProblems;
-
-
 import java.util.LinkedList;
 import java.util.Queue;
-import  java.util.*;
 
 class Buffer{
 

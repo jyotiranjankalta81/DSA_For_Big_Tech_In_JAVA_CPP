@@ -1,5 +1,3 @@
-package MultiThreadingVersion1CodeProblems;
-
 public class Thread2WaitForThread1 {
     public static void main (String[] args) throws InterruptedException{
         Thread th1 = new Thread(()->{

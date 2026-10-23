@@ -1,6 +1,26 @@
- class PolyMorphismConceptv1 {
+
+/*
+class Animal {
+    public void sound() {
+        System.out.println("Animal sound");
+    }
 }
 
+class Dog extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+ */
 public class PolyMorphismConcept {
 
     int add(int a, int b) {
@@ -16,6 +36,15 @@ public class PolyMorphismConcept {
 
         System.out.println(calc.add(2, 3));
         System.out.println(calc.add(2.5, 3.5));
+
+        /*
+        Animal animal = new Dog();
+        animal.sound(); // Dog barks
+
+        animal = new Cat();
+        animal.sound(); // Cat meows
+
+         */
     }
 }
 
@@ -49,4 +78,6 @@ The expression animal.sound() stays the same, but its behavior changes depending
 
 You can add another animal without changing makeSound(). The same principle works
  with interfaces—for example, calling pay() through a Payment interface implemented by different payment providers.
+
+ Java methods cannot be overloaded by changing only the return type. Their parameter lists must differ.
  */

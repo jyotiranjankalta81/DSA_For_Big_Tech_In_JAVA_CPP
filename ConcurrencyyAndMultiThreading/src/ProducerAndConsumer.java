@@ -151,7 +151,7 @@ class Buffer {
 
 
  */
-class Buffer{
+class Buffers{
    private Queue<Integer> queue = new LinkedList<>();
    private int capacity = 5;
 
@@ -175,11 +175,11 @@ class Buffer{
 
 }
 
-class Producer implements  Runnable{
+class Producers implements  Runnable{
 
-    private Buffer buffer;
+    private Buffers buffer;
 
-    Producer(Buffer buffer){
+    Producers(Buffers buffer){
         this.buffer= buffer;
     }
 
@@ -195,11 +195,11 @@ class Producer implements  Runnable{
         }
     }
 }
-class Consumer implements  Runnable{
+class Consumers implements  Runnable{
 
-    private Buffer buffer;
+    private Buffers buffer;
 
-    Consumer(Buffer buffer){
+    Consumers(Buffers buffer){
         this.buffer= buffer;
     }
 
@@ -219,10 +219,10 @@ public class ProducerAndConsumer {
 
     public static void main(String[] args) {
 
-        Buffer buffer = new Buffer();
+        Buffers buffer = new Buffers();
 
-        Thread producer = new Thread(new Producer(buffer));
-        Thread consumer = new Thread(new Consumer(buffer));
+        Thread producer = new Thread(new Producers(buffer));
+        Thread consumer = new Thread(new Consumers(buffer));
 
         producer.start();
         consumer.start();

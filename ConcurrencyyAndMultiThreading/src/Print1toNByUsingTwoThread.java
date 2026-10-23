@@ -1,5 +1,3 @@
-package MultiThreadingVersion1CodeProblems;
-
 public class Print1toNByUsingTwoThread {
 
         private  int number=1;
